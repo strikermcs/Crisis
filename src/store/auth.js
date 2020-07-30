@@ -9,10 +9,11 @@ export default {
                 await firebase.auth().signInWithEmailAndPassword(email, password)
 
             }catch(e){
+                commit('setError', e)
                throw e     
             }
         },
-        async register({dispatch}, {email, password, name}) {
+        async register({dispatch, commit}, {email, password, name}) {
             try{
                 await firebase.auth().createUserWithEmailAndPassword(email, password)
                 const uid = await dispatch('getUid') 
@@ -21,6 +22,7 @@ export default {
                     name: name
                 })   
             }catch(e){
+                commit('setError', e)
                throw e     
             }
         },
@@ -28,8 +30,9 @@ export default {
             const user = firebase.auth().currentUser
             return user ? user.uid : null 
         },
-        async logout() {
+        async logout({commit}) {
             await firebase.auth().signOut()
+            commit('clearInfo')
         }  
     }
 }
