@@ -103,7 +103,7 @@ export default {
     agree: {checked: v => v}
   },
   methods:{
-    submitHandler(){
+    async submitHandler(){
       if(this.$v.$invalid){
         this.$v.$touch()
         return
@@ -115,9 +115,15 @@ export default {
         name: this.name
       }
 
-      this.$router.push('/')
+      try{
 
-      console.log(formData)
+        await this.$store.dispatch('register', formData)
+
+        this.$router.push('/')
+
+      }catch(e) {}
+      
+      
 
     }
   }
