@@ -2,7 +2,7 @@
     <form class="card auth-card" @submit.prevent="submitHandler">
 
       <div class="card-content">
-    <span class="card-title">NCrisis v0.0.1</span>
+    <span class="card-title">Geld v0.0.1</span>
       <span>Домашняя бухгалтерия</span>
     <div class="input-field">
       <input
